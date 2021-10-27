@@ -16,13 +16,15 @@
 #include "tipo.h"
 #include "color.h"
 #include "dataWarehouse.h"
+#include "cliente.h"
 
 #define TAM 10
 #define TAM_SERV 4
 #define TAM_COLOR 5
 #define TAM_TIPO 4
 #define TAM_CILIN 4
-#define TAM_TRA 5
+#define TAM_TRA 10
+#define TAM_CLI 10
 int main(void) {
 
 	setbuf(stdout,NULL);
@@ -66,8 +68,23 @@ int main(void) {
 				{10004,"Rojo"}
 		};
 
+		eCliente clientes[TAM_CLI] =
+		{
+				{1,"marta",'f'},
+				{2,"juan",'m'},
+				{3,"antonio",'m'},
+				{4,"clara",'f'},
+				{5,"marcos",'m'},
+				{6,"martina",'f'},
+				{7,"carlos",'m'},
+				{8,"reina",'f'},
+				{9,"anselmo",'m'},
+				{10,"love",'f'}
+
+		};
 
 		hardcodearMotos(lista,TAM,8,&nextId);
+		hardcodearTrabajos(listaTrabajos,TAM_TRA,8,&nextIDT);
 
 		do
 		{
@@ -75,7 +92,7 @@ int main(void) {
 			switch(menu())
 			{
 				case 1:
-					if(altaMoto(lista,TAM,tipos,colores,TAM_TIPO,TAM_COLOR,&nextId))
+					if(altaMoto(clientes,TAM_CLI,lista,TAM,tipos,colores,TAM_TIPO,TAM_COLOR,&nextId))
 					{
 						printf("Alta exitosa!\n");
 						flag = 1;
@@ -88,7 +105,7 @@ int main(void) {
 				case 2:
 					if(flag == 1)
 					{
-						if(modificarMoto(lista,tipos,colores, TAM_TIPO,TAM_COLOR,TAM))
+						if(modificarMoto(clientes,TAM_CLI,lista,tipos,colores, TAM_TIPO,TAM_COLOR,TAM))
 						{
 							printf("Modificacion exitosa!\n");
 						}
@@ -106,7 +123,7 @@ int main(void) {
 				case 3:
 					if(flag == 1)
 					{
-						if(bajaMoto(lista,tipos,colores,TAM_TIPO,TAM_COLOR,TAM))
+						if(bajaMoto(clientes,TAM_CLI,lista,tipos,colores,TAM_TIPO,TAM_COLOR,TAM))
 						{
 							printf("Baja exitosa!\n");
 						}
@@ -123,8 +140,8 @@ int main(void) {
 				case 4:
 					if(flag == 1)
 					{
-						ordenarMotos(lista ,TAM,tipos,TAM_TIPO);
-						if(!mostrarMotos(lista,tipos,colores,TAM_TIPO,TAM_COLOR,TAM))
+						ordenarMotos(clientes,TAM_CLI,lista ,TAM,tipos,TAM_TIPO);
+						if(!mostrarMotos(clientes,TAM_CLI,lista,tipos,colores,TAM_TIPO,TAM_COLOR,TAM))
 						{
 							printf("NO se pudieron mostrar las motos\n");
 						}
@@ -155,7 +172,7 @@ int main(void) {
 					system("cls");
 					if(flag == 1)
 					{
-						altaTrabajo(listaTrabajos, TAM_TRA,lista,TAM,servicios, TAM_SERV, tipos, colores, TAM_TIPO, TAM_COLOR,&nextIDT,&nextId);
+						altaTrabajo(clientes,TAM_CLI,listaTrabajos, TAM_TRA,lista,TAM,servicios, TAM_SERV, tipos, colores, TAM_TIPO, TAM_COLOR,&nextIDT,&nextId);
 					}
 					else
 					{
@@ -165,6 +182,10 @@ int main(void) {
 				case 9:
 					system("cls");
 					mostrarTrabajos(listaTrabajos,TAM_TRA,lista,servicios,TAM_SERV,TAM);
+					break;
+				case 10:
+					system("cls");
+					informes(clientes,TAM_CLI,lista,tipos,colores,TAM_TIPO,TAM_COLOR,TAM,servicios,TAM_SERV,listaTrabajos,TAM_TRA);
 					break;
 				case 20:
 					seguir = 'n';

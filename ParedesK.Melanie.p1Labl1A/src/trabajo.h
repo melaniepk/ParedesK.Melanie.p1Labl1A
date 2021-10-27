@@ -27,6 +27,26 @@ typedef struct
 
 
 #endif /* TRABAJO_H_ */
+
+/**
+ * @fn int informes(eCliente[], int, eMoto[], eTipo[], eColor[], int, int, int, eServicio[], int, eTrabajo[], int)
+ * @brief
+ * contiene una lista de funciones de informes que se pueden realizar
+ * @param clientes->lista de clientes
+ * @param tamCli >_tamaño de la lista de clientes
+ * @param lista ->lista de motos
+ * @param tipos >-lista de tipos
+ * @param colores ->lista de colores
+ * @param tamTipos ->tamño de la lista de tipos
+ * @param tamColores ->tamaño de la lista de colores
+ * @param tam ->tamaño de la lista de motos
+ * @param servicios ->lista de servicios
+ * @param tamSer ->tamaño de la lista de servicicios
+ * @param trabajos ->ista de trabajos
+ * @param tamTra ->tamaño de la lista de trabajos
+ * @return 0 si no puede moostrar las funciones 1 si puede
+ */
+int informes(eCliente clientes[], int tamCli,eMoto lista[],eTipo tipos[], eColor colores[], int tamTipos, int tamColores, int tam,eServicio servicios[],int tamSer,eTrabajo trabajos[], int tamTra);
 /**
  * @fn int altaTrabajo(eTrabajo[], int, eMoto[], int, eServicio[], int, eTipo[], eColor[], int, int, int*, int*)
  * @brief
@@ -45,7 +65,7 @@ typedef struct
  * @param pIdMoto -> id de la moto a dar de alta
  * @return devuelve 1 si pudo dar de alta, 0 si no
  */
-int altaTrabajo(eTrabajo trabajo[],int tamTra,eMoto lista[], int tam,eServicio servicios[],
+int altaTrabajo(eCliente clientes[], int tamCli,eTrabajo trabajo[],int tamTra,eMoto lista[], int tam,eServicio servicios[],
 		int tamServicios,eTipo tipos[], eColor colores[],int tamTipos, int tamColores, int *pId,int *pIdMoto);
 
 /**
@@ -93,3 +113,81 @@ int buscarLibreT(eTrabajo lista[], int tam);
  * @return devuelve 1 si inicalizó, 0 si no
  */
 int inicializarTrabajos(eTrabajo lista[], int tam);
+
+/**
+ * @fn int mostrarTrabajosMoto(eCliente[], int, eTrabajo[], eServicio[], eMoto[], eTipo[], eColor[], int, int, int, int, int)
+ * @brief
+ * muestra los trabajos realizados a determinada moto
+ * @param clientes ->lista de clientes
+ * @param tamCli ->tamaño de la lista de clientes
+ * @param trabajos ->lista de trabajos
+ * @param servicios ->lista de servicios
+ * @param lista ->lista de motos
+ * @param tipos ->lista de tipos
+ * @param colores->lista de colores
+ * @param tamt->tamaño de la lista de trabajos
+ * @param tamSer ->tamaño de la lista de servicios
+ * @param tam ->tamaño de la lista de motos
+ * @param tamTi ->tamaño de la lista de tipos
+ * @param tamc ->tamaño de la lista de colores
+ * @return 1 si pudo buscar, 0 si no
+ */
+int mostrarTrabajosMoto(eCliente clientes[], int tamCli,eTrabajo trabajos[],eServicio servicios[],eMoto lista[],eTipo tipos[],eColor colores[],int tamt,int tamSer, int tam, int tamTi, int tamc);
+
+/**
+ * @fn int sumaServiciosPorMoto(eCliente[], int, eTrabajo[], eServicio[], eMoto[], eTipo[], eColor[], int, int, int, int, int)
+ * @brief
+ * suma el precio de los servicios aplicados a determinada moto
+ * @param clientes ->lista de clientes
+ * @param tamCli ->tamaño de la lista de clientes
+ * @param trabajos ->lista de trabajos
+ * @param servicios ->lista de servicios
+ * @param lista ->lista de motos
+ * @param tipos ->lista de tipos
+ * @param colores ->lista de colores
+ * @param tamt ->tamaño de la lista de trabajos
+ * @param tamSer ->tamaño de la lista de servicios
+ * @param tam ->tamaño de la lista de motos
+ * @param tamTi ->tamaño de tipos
+ * @param tamc ->tamaño de la lista de colores
+ * @return 1 si pudo sumar, 0 si no
+ */
+int sumaServiciosPorMoto(eCliente clientes[], int tamCli,eTrabajo trabajos[],eServicio servicios[],eMoto lista[],eTipo tipos[],eColor colores[],int tamt,int tamSer, int tam, int tamTi, int tamc);
+
+/**
+ * @fn int servicioMotoYFecha(eCliente[], int, eTrabajo[], eServicio[], eMoto[], eTipo[], eColor[], int, int, int, int, int)
+ * @brief
+ * muestra las motos que se ralizaron un cierto servicio con su fecha
+ * @param clientes ->lista de clientes
+ * @param tamCli ->tamaño de la lista de clientes
+ * @param trabajos ->lista de trabajos
+ * @param servicios ->lista de servicios
+ * @param lista ->lista de motos
+ * @param tipos ->lista de tipos
+ * @param colores->lista de colores
+ * @param tamt ->tamaño de la lista de trabajos
+ * @param tamSer ->tamaño de la lista de servicios
+ * @param tam ->tamaño de la lista de motos
+ * @param tamTi ->tamaño de la lista de tipos
+ * @param tamc ->tamaño de la lista de colores
+ * @return 1 si pudo buscar, 0 si no
+ */
+int servicioMotoYFecha(eCliente clientes[], int tamCli,eTrabajo trabajos[],eServicio servicios[],eMoto lista[],eTipo tipos[],eColor colores[],int tamt,int tamSer, int tam, int tamTi, int tamc);
+
+/**
+ * @fn int serviciosRealizadosPorFecha(eTrabajo[], eServicio[], eMoto[], eTipo[], eColor[], int, int, int, int, int)
+ * @brief
+ * se pide una fecha y se muestra los servicios realizados en esa fecha
+ * @param trabajos ->lista de trabajos
+ * @param servicios->lista de servicios
+ * @param lista ->lista dde motos
+ * @param tipos ->lista de tipos
+ * @param colores ->lista de colores
+ * @param tamt->tamaño de la lista de trabajos
+ * @param tamSer ->tamaño de la lista de servicios
+ * @param tam ->tamaño de la lista de motos
+ * @param tamTi ->tamaño de la lista de tipos
+ * @param tamc ->tamaño de la lista de colores
+ * @return 1 si pudo buscar, 0 si no
+ */
+int serviciosRealizadosPorFecha(eTrabajo trabajos[],eServicio servicios[],eMoto lista[],eTipo tipos[],eColor colores[],int tamt,int tamSer, int tam, int tamTi, int tamc);
